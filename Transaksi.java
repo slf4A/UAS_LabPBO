@@ -7,8 +7,7 @@ public class Transaksi {
     private double totalHarga;
     private String metodePembayaran;
 
-    public Transaksi(String idTransaksi, Customer customer, ArrayList<ItemKeranjang> items,
-                     double totalHarga, String metodePembayaran) {
+    public Transaksi(String idTransaksi, Customer customer, ArrayList<ItemKeranjang> items, double totalHarga, String metodePembayaran) {
         this.idTransaksi = idTransaksi;
         this.customer = customer;
         this.items = items;
@@ -19,33 +18,22 @@ public class Transaksi {
     public String getIdTransaksi() {
         return idTransaksi;
     }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public ArrayList<ItemKeranjang> getItems() {
-        return items;
-    }
-
-    public double getTotalHarga() {
-        return totalHarga;
-    }
-
-    public String getMetodePembayaran() {
-        return metodePembayaran;
-    }
-
+    
     public void cetakInvoice() {
-        System.out.println("=== Invoice Transaksi ===");
+        System.out.println("========== Invoice ==========");
         System.out.println("ID Transaksi: " + idTransaksi);
-        System.out.println("Pelanggan: " + customer.getName());
-        System.out.println("Daftar Barang:");
+        System.out.println("Nama Customer: " + customer.getName());
+        System.out.println("Email Customer: " + customer.getName());
+        System.out.println("==================================");
+        System.out.println("Detail Barang:");
         for (ItemKeranjang item : items) {
-            System.out.println("- " + item.getBarang().getNama() + " (Jumlah: " + item.getJumlah() + ") - Harga: " + item.getBarang().getHarga());
+            System.out.println("- " + item.getBarang().getNama() + 
+                               " (x" + item.getJumlah() + ") = " + 
+                               (item.getBarang().getHarga() * item.getJumlah()));
         }
-        System.out.println("Total Harga: " + totalHarga);
+        System.out.println("----------------------------------");
+        System.out.println("Total Harga: Rp " + totalHarga);
         System.out.println("Metode Pembayaran: " + metodePembayaran);
-        System.out.println("=========================");
+        System.out.println("==================================");
     }
 }
