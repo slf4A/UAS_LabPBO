@@ -68,3 +68,21 @@ public class Main {
         transaksi.cetakInvoice();
     }
 }
+
+
+## Kelas Pembayaran
+
+### Deskripsi
+Kelas `Pembayaran` adalah kelas abstrak yang mendefinisikan struktur dasar untuk berbagai metode pembayaran. Kelas ini memiliki beberapa kelas turunan yang mengimplementasikan metode pembayaran yang berbeda.
+
+### Kelas Turunan
+1. **QRIS**: Kelas ini mengimplementasikan metode pembayaran menggunakan QRIS. Ketika metode `tampilkanMetodePembayaran()` dipanggil, ia akan mencetak "Metode Pembayaran: QRIS".
+   
+2. **Bank**: Kelas ini mengimplementasikan metode pembayaran melalui transfer bank. Ketika metode `tampilkanMetodePembayaran()` dipanggil, ia akan mencetak "Metode Pembayaran: Bank Transfer".
+   
+3. **COD**: Kelas ini mengimplementasikan metode pembayaran Cash On Delivery (COD). Ketika metode `tampilkanMetodePembayaran()` dipanggil, ia akan mencetak "Metode Pembayaran: Cash On Delivery (COD)".
+
+### Struktur Kelas
+#### 1. Pembayaran
+- **id (String)**: Menyimpan ID untuk metode pembayaran.
+- **tampilkanMetodePembayaran()**: Metode abstrak yang harus diimplementasikan oleh kelas turunan untuk menampilkan metode pembayaran yang digunakan.
