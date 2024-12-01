@@ -1,25 +1,17 @@
 import java.util.ArrayList;
 
 public class Keranjang {
-    private ArrayList<Barang> barangList;
+    private ArrayList<Barang> barang;
 
     public Keranjang() {
-        barangList = new ArrayList<>();
+        this.barang = new ArrayList<>();
     }
 
     public void tambahBarang(Barang barang) {
-        barangList.add(barang);
+        this.barang.add(barang);
     }
 
-    public ArrayList<Barang> getBarangList() {
-        return barangList;
-    }
-
-    public double totalHarga() {
-        double total = 0;
-        for (Barang b : barangList) {
-            total += b.getHarga();
-        }
-        return total;
+    public ArrayList<Barang> getBarang() {
+        return barang;
     }
 }
