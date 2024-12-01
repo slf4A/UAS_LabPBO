@@ -46,7 +46,8 @@ public class Admin {
 
   // Method to display admin details
   public void displayAdminInfo() {
-      System.out.println("Admin Username: " + username);
-      System.out.println("Admin Email: " + email);
+      System.out.println("Username: " + username);
+      System.out.println("Email: " + email);
+      System.out.println("Password: "+ password);
   }
 }
