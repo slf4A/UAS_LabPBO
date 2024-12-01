@@ -1,59 +1,71 @@
 # UAS_LabPBO
-# Kelas Transaksi
+## Deskripsi Kelas
+Kelas `Transaksi` menyimpan informasi penting terkait transaksi, termasuk ID transaksi, informasi pelanggan, daftar item yang dibeli, total harga, dan metode pembayaran yang digunakan.
 
-## Deskripsi
-Kelas `Transaksi` adalah bagian dari sistem penjualan yang digunakan untuk merepresentasikan transaksi yang dilakukan oleh pelanggan. Kelas ini menyimpan informasi terkait transaksi, termasuk ID transaksi, informasi pelanggan, daftar item yang dibeli, total harga, dan metode pembayaran.
-
-## Fitur
-- Menyimpan informasi transaksi seperti ID, pelanggan, daftar item, total harga, dan metode pembayaran.
-- Mencetak invoice transaksi yang berisi detail transaksi.
+## Fitur Utama
+- **Menyimpan Informasi Transaksi:** Kelas ini menyimpan berbagai informasi yang berkaitan dengan transaksi, seperti ID unik, data pelanggan, daftar item yang dibeli, total harga, dan metode pembayaran.
+- **Mencetak Invoice:** Kelas ini memiliki kemampuan untuk mencetak invoice yang berisi detail transaksi, memberikan ringkasan yang jelas kepada pelanggan.
 
 ## Struktur Kelas
-### 1. **Transaksi**
-Kelas ini adalah representasi dari transaksi yang dilakukan oleh pelanggan.
+### 1. Transaksi
+Kelas ini berfungsi sebagai representasi dari transaksi yang dilakukan oleh pelanggan.
 
 #### Properti
-- **idTransaksi**: `String`  
-  Menyimpan ID unik untuk setiap transaksi.
+- **idTransaksi (String):** 
+  Menyimpan ID unik untuk setiap transaksi, yang digunakan untuk mengidentifikasi transaksi tersebut.
   
-- **customer**: `Customer`  
-  Objek dari kelas `Customer` yang menyimpan informasi pelanggan yang melakukan transaksi.
+- **customer (Customer):** 
+  Objek dari kelas `Customer` yang menyimpan informasi tentang pelanggan yang melakukan transaksi, seperti nama dan email.
   
-- **items**: `ArrayList<ItemKeranjang>`  
-  Menyimpan daftar item yang dibeli dalam transaksi.
+- **items (ArrayList<ItemKeranjang>):** 
+  Menyimpan daftar item yang dibeli dalam transaksi. Setiap item diwakili oleh objek `ItemKeranjang`, yang berisi informasi tentang barang dan jumlah yang dibeli.
   
-- **totalHarga**: `double`  
-  Menyimpan total harga dari semua item yang dibeli.
+- **totalHarga (double):** 
+  Menyimpan total harga dari semua item yang dibeli dalam transaksi, memberikan gambaran jelas tentang biaya yang harus dibayar oleh pelanggan.
   
-- **metodePembayaran**: `String`  
-  Menyimpan metode pembayaran yang digunakan oleh pelanggan.
+- **metodePembayaran (String):** 
+  Menyimpan metode pembayaran yang digunakan oleh pelanggan, seperti "Kartu Kredit", "Transfer Bank", atau "COD".
 
 #### Metode
-- **Transaksi(String idTransaksi, Customer customer, ArrayList<ItemKeranjang> items, double totalHarga, String metodePembayaran)**  
-  Konstruktor untuk menginisialisasi semua atribut transaksi.
+- **Transaksi(String idTransaksi, Customer customer, ArrayList<ItemKeranjang> items, double totalHarga, String metodePembayaran):** 
+  Konstruktor yang digunakan untuk menginisialisasi semua atribut transaksi saat objek `Transaksi` dibuat.
   
-- **getIdTransaksi()**  
-  Mengembalikan ID transaksi.
+- **getIdTransaksi():** 
+  Metode ini mengembalikan ID transaksi, memungkinkan akses ke informasi ID transaksi dari luar kelas.
   
-- **cetakInvoice()**  
-  Mencetak invoice transaksi ke konsol, menampilkan semua informasi terkait transaksi, termasuk detail barang yang dibeli, total harga, dan metode pembayaran.
+- **cetakInvoice():** 
+  Metode ini mencetak invoice transaksi ke konsol, menampilkan semua informasi terkait transaksi, termasuk detail barang yang dibeli, total harga, dan metode pembayaran yang digunakan.
 
 ## Cara Penggunaan
-1. Buat instance `Customer` dan `ItemKeranjang`.
-2. Buat instance `Transaksi` dengan memberikan ID transaksi, objek `Customer`, daftar `ItemKeranjang`, total harga, dan metode pembayaran.
-3. Panggil metode `cetakInvoice` untuk mencetak detail transaksi.
+1. **Membuat Instance Customer dan ItemKeranjang:**
+   - Pertama, buat objek `Customer` untuk menyimpan informasi pelanggan dan objek `ItemKeranjang` untuk menyimpan item yang dibeli.
+   
+2. **Membuat Instance Transaksi:**
+   - Buat objek `Transaksi` dengan memberikan ID transaksi, objek `Customer`, daftar `ItemKeranjang`, total harga, dan metode pembayaran.
+   
+3. **Mencetak Invoice:**
+   - Panggil metode `cetakInvoice` untuk mencetak detail transaksi, memberikan ringkasan yang jelas kepada pelanggan.
 
-### Contoh
-Berikut adalah contoh penggunaan program:
+## Contoh Penggunaan
+## Contoh Penggunaan
+Berikut adalah contoh penggunaan program yang menunjukkan bagaimana cara membuat objek `Customer`, menambahkan item ke dalam daftar `ItemKeranjang`, dan membuat objek `Transaksi`. Setelah itu, metode `cetakInvoice` dipanggil untuk menampilkan detail transaksi kepada pengguna.
+
 ```java
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
         Customer customer = new Customer("Florence Clarrine", "Flo.Clarrine@example.com");
+        
         ArrayList<ItemKeranjang> items = new ArrayList<>();
-        items.add(new ItemKeranjang(new Barang("PC", 35000000), 1));
-        items.add(new ItemKeranjang(new Barang("Keyboard", 3000000), 2));
 
-        Transaksi transaksi = new Transaksi("TRX001", customer, items, 38000000, "Kartu Kredit");
+        items.add(new ItemKeranjang(new Barang("PC", 35000000), 1)); // 1 unit PC
+        items.add(new ItemKeranjang(new Barang("Keyboard", 3000000), 2)); // 2 unit Keyboard
+
+        double totalHarga = 35000000 + (3000000 * 2); // Total harga = harga PC + (harga Keyboard * jumlah)
+
+        Transaksi transaksi = new Transaksi("TRX001", customer, items, totalHarga, "Kartu Kredit");
+
         transaksi.cetakInvoice();
     }
 }
