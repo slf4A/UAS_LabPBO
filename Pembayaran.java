@@ -1,4 +1,3 @@
-// Kelas Abstrak Pembayaran
 abstract class Pembayaran {
     String id;
 
