@@ -47,7 +47,6 @@ Kelas ini berfungsi sebagai representasi dari transaksi yang dilakukan oleh pela
    - Panggil metode `cetakInvoice` untuk mencetak detail transaksi, memberikan ringkasan yang jelas kepada pelanggan.
 
 ## Contoh Penggunaan
-## Contoh Penggunaan
 Berikut adalah contoh penggunaan program yang menunjukkan bagaimana cara membuat objek `Customer`, menambahkan item ke dalam daftar `ItemKeranjang`, dan membuat objek `Transaksi`. Setelah itu, metode `cetakInvoice` dipanggil untuk menampilkan detail transaksi kepada pengguna.
 
 ```java
