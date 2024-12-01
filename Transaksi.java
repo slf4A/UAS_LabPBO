@@ -1,43 +1,58 @@
+import java.util.ArrayList;
+
 class Transaksi {
-    Customer akun;
-    ArrayList<Barang> barang;
+    private String idTransaksi;
+    private Customer customer;
+    private ArrayList<ItemKeranjang> items;
+    private double totalHarga;
+    private Pembayaran pembayaran;  // Tipe pembayaran, bisa QRIS, Bank, atau COD
 
-    public Transaksi(Customer akun, ArrayList<Barang> barang) {
-        this.akun = akun;
-        this.barang = barang;
-    }
-}
-class Invoice {
-    Transaksi transaksi;
-    Pembayaran pembayaran;
-
-    public Invoice(Transaksi transaksi, Pembayaran pembayaran) {
-        this.transaksi = transaksi;
+    public Transaksi(String idTransaksi, Customer customer, ArrayList<ItemKeranjang> items, 
+                     double totalHarga, Pembayaran pembayaran) {
+        this.idTransaksi = idTransaksi;
+        this.customer = customer;
+        this.items = items;
+        this.totalHarga = totalHarga;
         this.pembayaran = pembayaran;
     }
-}
-abstract class Pembayaran {
-    String id;
 
-    public Pembayaran(String id) {
-        this.id = id;
+    public String getIdTransaksi() {
+        return idTransaksi;
     }
-}
 
-class QRIS extends Pembayaran {
-    public QRIS(String id) {
-        super(id);
+    public Customer getCustomer() {
+        return customer;
     }
-}
 
-class Bank extends Pembayaran {
-    public Bank(String id) {
-        super(id);
+    public ArrayList<ItemKeranjang> getItems() {
+        return items;
     }
-}
 
-class COD extends Pembayaran {
-    public COD(String id) {
-        super(id);
+    public double getTotalHarga() {
+        return totalHarga;
+    }
+
+    public Pembayaran getPembayaran() {
+        return pembayaran;
+    }
+    
+    public void cetakInvoice() {
+        System.out.println("========== Invoice ==========");
+        System.out.println("ID Transaksi: " + idTransaksi);
+        System.out.println("Pelanggan: " + customer.getName());
+        System.out.println("==================================");
+        System.out.println("Detail Barang:");
+
+        for (ItemKeranjang item : items) {
+            double itemTotal = item.getBarang().getHarga() * item.getJumlah();
+            System.out.println("- " + item.getBarang().getNama() +
+                               " (x" + item.getJumlah() + ") = Rp " + itemTotal);
+        }
+
+        System.out.println("----------------------------------");
+        System.out.println("Total Harga: Rp " + totalHarga);
+        
+        pembayaran.tampilkanMetodePembayaran();
+        System.out.println("==================================");
     }
 }
