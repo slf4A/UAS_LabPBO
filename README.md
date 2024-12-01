@@ -6,4 +6,4 @@
 2. **Rahmatun Nisa** (2308107010016)  
 3. **Thahira Riska** (2308107010024)  
 4. **Sifa Jema** (2308107010080)
-# Adinda Siti Humairah (tidak ada kontribusi)
+5. **Adinda Siti Humairah** (tidak ada kontribusi)
