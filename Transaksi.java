@@ -1,58 +1,55 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
-class Transaksi {
-    private String idTransaksi;
-    private Customer customer;
-    private ArrayList<ItemKeranjang> items;
-    private double totalHarga;
-    private Pembayaran pembayaran;  // Tipe pembayaran, bisa QRIS, Bank, atau COD
+public class Transaksi {
+    private Customer akun;
+    private ArrayList<Barang> barang;
+    private String statusPembayaran;
 
-    public Transaksi(String idTransaksi, Customer customer, ArrayList<ItemKeranjang> items, 
-                     double totalHarga, Pembayaran pembayaran) {
-        this.idTransaksi = idTransaksi;
-        this.customer = customer;
-        this.items = items;
-        this.totalHarga = totalHarga;
-        this.pembayaran = pembayaran;
+    public Transaksi(Customer akun, ArrayList<Barang> barang) {
+        this.akun = akun;
+        this.barang = barang;
+        this.statusPembayaran = "Sedang Diproses";  // Default status
     }
 
-    public String getIdTransaksi() {
-        return idTransaksi;
+    public Customer getAkun() {
+        return akun;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public ArrayList<Barang> getBarang() {
+        return barang;
     }
 
-    public ArrayList<ItemKeranjang> getItems() {
-        return items;
+    public String getStatusPembayaran() {
+        return statusPembayaran;
     }
 
-    public double getTotalHarga() {
-        return totalHarga;
+    public void setStatusPembayaran(String statusPembayaran) {
+        this.statusPembayaran = statusPembayaran;
     }
 
-    public Pembayaran getPembayaran() {
-        return pembayaran;
-    }
-    
     public void cetakInvoice() {
-        System.out.println("========== Invoice ==========");
-        System.out.println("ID Transaksi: " + idTransaksi);
-        System.out.println("Pelanggan: " + customer.getName());
-        System.out.println("==================================");
-        System.out.println("Detail Barang:");
-
-        for (ItemKeranjang item : items) {
-            double itemTotal = item.getBarang().getHarga() * item.getJumlah();
-            System.out.println("- " + item.getBarang().getNama() +
-                               " (x" + item.getJumlah() + ") = Rp " + itemTotal);
+        System.out.println("Transaksi untuk: " + akun.getId());
+        for (Barang barang : barang) {
+            System.out.println(barang.getNama() + " - Rp" + barang.getHarga());
         }
+    }
 
-        System.out.println("----------------------------------");
-        System.out.println("Total Harga: Rp " + totalHarga);
-        
-        pembayaran.tampilkanMetodePembayaran();
-        System.out.println("==================================");
+    public void simpanKeFile(String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            writer.write("Transaksi untuk: " + akun.getId());
+            writer.newLine();
+            for (Barang barang : barang) {
+                writer.write(barang.getNama() + " - Rp" + barang.getHarga());
+                writer.newLine();
+            }
+            writer.write("=======================================");
+            writer.newLine();
+            System.out.println("Transaksi berhasil disimpan ke file: " + fileName);
+        } catch (IOException e) {
+            System.out.println("Terjadi kesalahan saat menyimpan transaksi ke file: " + e.getMessage());
+        }
     }
 }
